@@ -1,4 +1,4 @@
-const input = document.getElementById('m');
+const input = document.querySelector('#m');
 
 function onSubmit() {
     console.log("yes", input);
