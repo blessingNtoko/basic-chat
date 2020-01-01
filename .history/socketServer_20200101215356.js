@@ -20,7 +20,7 @@ app.get('/', (req, res) => {
     res.send('Hello World');
 });
 
-app.post('/', (req, res) => {
+app.post('/', bodyParser.json(), (req, res) => {
 
     const fromContactForm = {
         name: req.body.name,
@@ -46,7 +46,7 @@ app.post('/', (req, res) => {
     const mailOptions = {
         from: fromContactForm['name'].toString(),
         to: 'bntoko@gmail.com',
-        subject: 'From website: ' + fromContactForm['email'].toString(),
+        subject: 'Sending Email using Node.js',
         text: fromContactForm['message'].toString()
     };
 
