@@ -20,11 +20,9 @@ app.get('/', (req, res) => {
     res.send('Hello World');
 });
 
-app.post('/', (req, res) => {
-    // const body = JSON.parse(req.body);
+app.post('/', app.bodyParser(), (req, res) => {
     console.log('Req body', req.body);
-    // console.log('Res body', res.body);
-    res.send("got it");
+    console.log('Res body', res.body);
 
     // var transporter = nodemailer.createTransport({
     //     service: 'gmail',

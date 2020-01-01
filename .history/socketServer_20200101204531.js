@@ -21,9 +21,8 @@ app.get('/', (req, res) => {
 });
 
 app.post('/', (req, res) => {
-    // const body = JSON.parse(req.body);
     console.log('Req body', req.body);
-    // console.log('Res body', res.body);
+    console.log('Res body', res.body);
     res.send("got it");
 
     // var transporter = nodemailer.createTransport({

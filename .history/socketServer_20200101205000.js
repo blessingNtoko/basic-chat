@@ -21,8 +21,7 @@ app.get('/', (req, res) => {
 });
 
 app.post('/', (req, res) => {
-    // const body = JSON.parse(req.body);
-    console.log('Req body', req.body);
+    console.log('Req body', req);
     // console.log('Res body', res.body);
     res.send("got it");
 
