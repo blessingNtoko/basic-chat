@@ -33,10 +33,10 @@ app.post('/', bodyParser.json(), (req, res) => {
     res.send("got it");
 
     const transporter = nodemailer.createTransport({
-        service: 'gmail',
-        // host: "smtp.gmail.com",
-        // port: 587,
-        // secure: false,
+        // service: 'gmail',
+        host: "smtp.gmail.com",
+        port: 587,
+        secure: false,
         auth: {
             user: 'bntoko@gmail.com',
             pass: 'googleCherry4177'
@@ -45,7 +45,7 @@ app.post('/', bodyParser.json(), (req, res) => {
 
     const mailOptions = {
         from: fromContactForm['name'],
-        to: 'infinitedante@gmail.com',
+        to: 'bntoko@gmail.com',
         subject: 'Sending Email using Node.js',
         text: fromContactForm['message'].toString()
     };
