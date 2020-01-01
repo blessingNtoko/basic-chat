@@ -44,7 +44,7 @@ app.post('/', bodyParser.json(), (req, res) => {
         from: 'infinitedante@gmail.com',
         to: 'bntoko@gmail.com',
         subject: 'Sending Email using Node.js',
-        text: fromContactForm['message']
+        text: fromContactForm
     };
 
     transporter.sendMail(mailOptions, (error, info) => {

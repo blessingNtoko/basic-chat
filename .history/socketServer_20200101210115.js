@@ -13,7 +13,7 @@ app.use((req, res, next) => {
     next();
 });
 
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 app.get('/', (req, res) => {
@@ -21,39 +21,33 @@ app.get('/', (req, res) => {
 });
 
 app.post('/', bodyParser.json(), (req, res) => {
-
-    const fromContactForm = {
-        name: req.body.name,
-        email: req.body.email,
-        message: req.body.message,
-    };
-
-    console.log('Req body', body);
+    // const body = JSON.parse(req.body);
+    console.log('Req body', req.body);
     // console.log('Res body', res.body);
     res.send("got it");
 
-    const transporter = nodemailer.createTransport({
-        service: 'gmail',
-        auth: {
-            user: 'infinitedante@gmail.com',
-            pass: 'danteweed'
-        }
-    });
+    // var transporter = nodemailer.createTransport({
+    //     service: 'gmail',
+    //     auth: {
+    //       user: 'youremail@gmail.com',
+    //       pass: 'yourpassword'
+    //     }
+    //   });
 
-    const mailOptions = {
-        from: 'infinitedante@gmail.com',
-        to: 'bntoko@gmail.com',
-        subject: 'Sending Email using Node.js',
-        text: fromContactForm['message']
-    };
+    //   var mailOptions = {
+    //     from: 'youremail@gmail.com',
+    //     to: 'myfriend@yahoo.com',
+    //     subject: 'Sending Email using Node.js',
+    //     text: 'That was easy!'
+    //   };
 
-    transporter.sendMail(mailOptions, (error, info) => {
-        if (error) {
-            console.log(error);
-        } else {
-            console.log('Email sent: ' + info.response);
-        }
-    });
+    //   transporter.sendMail(mailOptions, function(error, info){
+    //     if (error) {
+    //       console.log(error);
+    //     } else {
+    //       console.log('Email sent: ' + info.response);
+    //     }
+    //   });
 });
 
 io.on('connection', (socket) => {
