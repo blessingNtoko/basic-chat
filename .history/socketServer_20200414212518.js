@@ -16,36 +16,48 @@ app.use((req, res, next) => {
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-// app.get('/', (req, res) => {
-//     res.sendFile(__dirname + '/copyWebSite/index.html');
-// });
+app.get('/', (req, res) => {
+    res.send('Hello World');
+});
 
 app.post('/', (req, res) => {
-    console.log(req);
-    console.log(res);
 
-    // var transporter = nodemailer.createTransport({
-    //     service: 'gmail',
-    //     auth: {
-    //       user: 'youremail@gmail.com',
-    //       pass: 'yourpassword'
-    //     }
-    //   });
+    const fromContactForm = {
+        name: req.body.name,
+        email: req.body.email,
+        message: req.body.message,
+    };
 
-    //   var mailOptions = {
-    //     from: 'youremail@gmail.com',
-    //     to: 'myfriend@yahoo.com',
-    //     subject: 'Sending Email using Node.js',
-    //     text: 'That was easy!'
-    //   };
+    console.log('Req body', fromContactForm);
+    // console.log('Res body', res.body);
+    res.send("got it");
 
-    //   transporter.sendMail(mailOptions, function(error, info){
-    //     if (error) {
-    //       console.log(error);
-    //     } else {
-    //       console.log('Email sent: ' + info.response);
-    //     }
-    //   });
+    const transporter = nodemailer.createTransport({
+        service: 'gmail',
+        // host: "smtp.gmail.com",
+        // port: 587,
+        // secure: false,
+        auth: {
+            user: 'infinitedante@gmail.com',
+            pass: 'danteweed'
+        }
+    });
+
+    const mailOptions = {
+        from: fromContactForm['name'].toString(),
+        // to: 'bntoko@gmail.com',
+        to: 'leeor337@gmail.com',
+        subject: 'From website: ' + fromContactForm['email'].toString(),
+        text: fromContactForm['message'].toString()
+    };
+
+    transporter.sendMail(mailOptions, (error, info) => {
+        if (error) {
+            console.log(error);
+        } else {
+            console.log('Email sent: ' + info.response);
+        }
+    });
 });
 
 io.on('connection', (socket) => {

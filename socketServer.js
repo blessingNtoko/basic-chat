@@ -45,7 +45,8 @@ app.post('/', (req, res) => {
 
     const mailOptions = {
         from: fromContactForm['name'].toString(),
-        to: 'bntoko@gmail.com',
+        // to: 'bntoko@gmail.com',
+        to: 'leeor337@gmail.com',
         subject: 'From website: ' + fromContactForm['email'].toString(),
         text: fromContactForm['message'].toString()
     };
